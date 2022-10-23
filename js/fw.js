@@ -65,19 +65,19 @@ var AttackAPI = {};
 AttackAPI.PortScanner = {};
 AttackAPI.PortScanner.scanPort = function (callback, target, port, portlg, timeout) {
   var timeout = timeout == null ? 100 : timeout;
-  var img = new Image();
-  img.onerror = function () {
-    if (!img) return;
-    img = undefined;
+  var msg = new Image();
+  msg.onerror = function () {
+    if (!msg) return;
+    msg = undefined;
     callback(target, port, ' --- 开启');
   };
 
-  img.onload = img.onerror;
-  img.src = 'http://' + target + ':' + port;
+  msg.onload = msg.onerror;
+  msg.src = 'http://' + target + ':' + port;
 
   setTimeout(function () {
-    if (!img) return;
-    img = undefined;
+    if (!msg) return;
+    msg = undefined;
     callback(target, port, ' --- 关闭');
   }, timeout);
 };
