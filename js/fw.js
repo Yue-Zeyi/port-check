@@ -1,13 +1,13 @@
 var address =
   /^((25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))$/;
-var zzms = /^1000|([1-9]|[1-9]\d|[1-9]\d{2}|[1-5]\d{3}|60000){4,6}$/;
+var zzms = /^[0-9]{4,6}$/;
 var dz = document.querySelector('#dz');
 var dk1 = document.querySelector('#dk1');
 var dk2 = document.querySelector('#dk2');
 var ys = document.querySelector('#ys');
 var btn = document.querySelector('#btn');
 var dkdk = document.querySelector('#dkdk');
-var dkdk1 = document.querySelector('#dkdk1');
+
 // 校验IP地址
 dz.onfocus = function () {
   this.nextElementSibling.className = 'alert alert-info';
@@ -30,17 +30,8 @@ dk1.onfocus = function () {
   dkdk.innerHTML = '端口号的范围是从1～65535';
 };
 dk1.onblur = function () {
-  var a = dk1.value;
-  var b = dk2.value;
-  if (b < a || b > 65535) {
-    dkdk.className = 'alert alert-danger';
-    dkdk.innerHTML = '端口输入错误，结束端口必须 ≥ 起始端口且＜65535';
-    btn.setAttribute('disabled', '');
-  } else {
-    dkdk.className = '';
-    dkdk.innerHTML = '';
-    btn.removeAttribute('disabled');
-  }
+  dkdk.className = '';
+  dkdk.innerHTML = '';
 };
 
 //端口检测
@@ -49,18 +40,10 @@ dk2.onfocus = function () {
   dkdk.innerHTML = '端口号的范围是从1～65535';
 };
 dk2.onblur = function () {
-  var a = dk1.value;
-  var b = dk2.value;
-  if (b < a || b > 65535) {
-    dkdk.className = 'alert alert-danger';
-    dkdk.innerHTML = '端口输入错误，结束端口必须 ≥ 起始端口且＜65535';
-    btn.setAttribute('disabled', '');
-  } else {
-    dkdk.className = '';
-    dkdk.innerHTML = '';
-    btn.removeAttribute('disabled');
-  }
+  dkdk.className = '';
+  dkdk.innerHTML = '';
 };
+
 //延时检测
 ys.onfocus = function () {
   this.nextElementSibling.className = 'alert alert-info';
@@ -77,7 +60,7 @@ ys.onblur = function () {
     btn.setAttribute('disabled', '');
   }
 };
-
+// 请求逻辑
 var AttackAPI = {};
 AttackAPI.PortScanner = {};
 AttackAPI.PortScanner.scanPort = function (callback, target, port, portlg, timeout) {
@@ -108,6 +91,20 @@ var callback = function (target, port, status) {
   result.value += target + ':' + port + status + ' \n';
 };
 var scan = function (form) {
+  if (dk1.value == '' || dk2.value == '') {
+    dkdk.className = 'alert alert-danger';
+    dkdk.innerHTML = '请输入端口号的区间范围，例如80-88';
+    return;
+  }
+  if (dk1.value > dk2.value) {
+    dkdk.className = 'alert alert-danger';
+    dkdk.innerHTML = '端口范围输入错误，结束端口必须 ≥ 起始端口且＜65535';
+    return;
+  } else if (dk2.value > 65535) {
+    dkdk.className = 'alert alert-danger';
+    dkdk.innerHTML = '端口范围输入错误，结束端口必须 ≥ 起始端口且＜65535';
+    return;
+  }
   // 清空结果
   var obj = document.getElementById('result');
   obj.value = '';

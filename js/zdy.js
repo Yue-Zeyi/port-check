@@ -1,6 +1,6 @@
 var address =
   /^((25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))$/;
-var zzms = /^1000|([1-9]|[1-9]\d|[1-9]\d{2}|[1-5]\d{3}|60000){4,6}$/;
+var zzms = /^[0-9]{4,6}$/;
 var dz = document.querySelector('#dz');
 var dk = document.querySelector('#dk');
 var ys = document.querySelector('#ys');
