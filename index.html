@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="YueZeyi">
+	<title>端口扫描</title>
+	<link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="./css/main.css">
+</head>
+
+
+<body>
+	<div class="tab_list">
+		<ul>
+			<li class="current">自定义扫描</li>
+			<a href="./portc.html">
+				<li> 按范围扫描 </li>
+			</a>
+		</ul>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			<p><strong>检测地址：</strong>请输入要检测的地址，建议输入ip，本地默认为127.0.0.1</p>
+			<p><strong>检测端口：</strong>多个以逗号,隔开，支持格式例如：80,445,3306,110,1521</p>
+			<p><strong>检测延时：</strong>单位为毫秒，填写1000表示1000ms未通过则为端口关闭</p>
+		</div>
+	</div>
+	<form>
+		<div class="form-group row">
+			<label for="target" class="col-sm-2 col-form-label">检测地址</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="target" value="127.0.0.1" id="dz" />
+				<div role="alert" class="" style="margin-top: 10px;"></div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="port" class="col-sm-2 col-form-label">检测端口</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="port" value="80" id="dk" />
+				<div role="alert" class="" style="margin-top: 10px;"></div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="timeout" class="col-sm-2 col-form-label">检测延时</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="timeout" value="1000" id="ys"
+					oninput="value=value.replace(/^(0+)|[^\d]+/g,'')" />
+				<div role="alert" class="" style="margin-top: 10px;"></div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="result" class="col-sm-2 col-form-label">扫描结果</label>
+			<div class="col-sm-10">
+				<textarea id="result" name="result" rows="7" cols="50" class="form-control"></textarea>
+			</div>
+		</div>
+		<div style="text-align:center;">
+			<input class="button btn btn-primary" id="btn" type="button" value="立即扫描"
+				onClick="javascript:scan(this.form)" />
+		</div>
+	</form>
+
+	<script>
+		console.log("%cGithub： https://github.com/Yue-Zeyi ", "color:orangered;font-weight:bolder")
+	</script>
+	<script script script src="./js/zdy.js"></script>
+</body>
+
+
+</html>

@@ -1,0 +1,40 @@
+form {
+  margin: 2rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.tab_list {
+  height: 39px;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+.tab_list li {
+  float: left;
+  height: 39px;
+  line-height: 39px;
+  width: 50%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.tab_list .current {
+  background-color: blue;
+  color: #fff;
+}
+
+.item_info {
+  padding: 20px 0 0 20px;
+}
+
+.item {
+  display: none;
+}
